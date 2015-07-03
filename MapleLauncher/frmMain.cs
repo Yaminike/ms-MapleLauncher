@@ -82,7 +82,7 @@ namespace MapleLauncher
 					string extension = Path.GetExtension(path);
 					string name = Path.GetFileNameWithoutExtension(path);
 
-					if (extension == ".WZ")
+					if (extension.ToLower().Contains("wz"))
 					{
 						outPacket.WriteString(name);
 						outPacket.WriteString(HashUtilities.GetMD5HashFromFile(path));
