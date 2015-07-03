@@ -22,11 +22,39 @@
 
 		public override void Dispatch(InPacket inPacket)
 		{
-			using (OutPacket outPacket = new OutPacket(inPacket))
+			if (inPacket.OperationCode == Program.ServerIP)
 			{
-				if (ClientSession.Instance != null)
+				ushort status = inPacket.ReadUShort();
+				ushort status2 = inPacket.ReadUShort();
+				byte[] ip = inPacket.ReadBytes(4);
+				ushort port = inPacket.ReadUShort();
+				byte[] leftover = inPacket.ReadLeftoverBytes();
+
+				Program.IP = string.Format("{0}.{1}.{2}.{3}", ip[0], ip[1], ip[2], ip[3]);
+				Program.Port = port;
+
+				using (OutPacket outPacket = new OutPacket(Program.ServerIP))
 				{
-					ClientSession.Instance.Send(outPacket.ToArray());
+					outPacket.WriteUShort(status);
+					outPacket.WriteUShort(status2);
+					outPacket.WriteBytes(127, 0, 0, 1);
+					outPacket.WriteUShort(8484);
+					outPacket.WriteBytes(leftover);
+
+					if (ClientSession.Instance != null)
+					{
+						ClientSession.Instance.Send(outPacket.ToArray());
+					}
+				}
+			}
+			else
+			{
+				using (OutPacket outPacket = new OutPacket(inPacket))
+				{
+					if (ClientSession.Instance != null)
+					{
+						ClientSession.Instance.Send(outPacket.ToArray());
+					}
 				}
 			}
 		}
