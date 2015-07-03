@@ -32,6 +32,10 @@ Name: The name of your server. This will show up in some places
 7. ???
 8. PROFIT!
 
+### How To Calculate Hash?
+
+Included in the solution is an application called "CalculateHash" which will return the calculated hash checksum of a file. Simply drag the .wz file on it and it will display it's hash checksum!
+
 ### Handling The Packet
 
 Handling the custom packet is quite easy. Here's a small example to help you get started!
