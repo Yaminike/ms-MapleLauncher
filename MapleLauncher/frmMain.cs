@@ -68,6 +68,8 @@ namespace MapleLauncher
 
 		private void OnClientAccepted(Socket socket)
 		{
+			this.Minimize();
+
 			new ClientSession(socket);
 		}
 
