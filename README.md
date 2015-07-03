@@ -31,3 +31,45 @@ Name: The name of your server. This will show up in some places
 6. Build the application.
 7. ???
 8. PROFIT!
+
+### Handling The Packet
+
+Handling the custom packet is quite easy. Here's a small example to help you get started!
+(Sorry for my rusty Java skills):
+
+```
+case WZ_CHECKSUM:
+	Map<String, String> wzFiles = new Map<String, String>();
+	wzFiles.put("Base", "1");
+	wzFiles.put("Character", "2");
+	wzFiles.put("Effect", "3");
+	wzFiles.put("Etc", "4");
+	wzFiles.put("Item", "5");
+	wzFiles.put("Map", "6");
+	wzFiles.put("Mob", "7");
+	wzFiles.put("Morph", "8");
+	wzFiles.put("Npc", "9");
+	wzFiles.put("Quest", "10");
+	wzFiles.put("Reactor", "11");
+	wzFiles.put("Skill", "12");
+	wzFiles.put("Sound", "13");
+	wzFiles.put("String", "14");
+	wzFiles.put("TamingMob", "15");
+	wzFiles.put("UI", "16");
+	};
+
+	while (slea.Available() >= 0) {
+		String name = slea.readMapleString();
+		String hash = slea.readMapleString();
+
+		String computedHash = map.get(name);
+
+		if (hash != computedHash) {
+			c.disconnect();
+
+			break;
+		}
+	}
+	
+	break;
+```
