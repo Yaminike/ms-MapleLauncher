@@ -18,6 +18,8 @@ namespace MapleLauncher
 
 		public frmMain()
 		{
+			MapleKeys.Initialize();
+
 			this.InitializeComponent();
 
 			this.Acceptor = new Acceptor(8484);
