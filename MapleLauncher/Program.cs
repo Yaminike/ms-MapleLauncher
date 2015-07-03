@@ -13,7 +13,7 @@ namespace MapleLauncher
 		public const string Name = "MapleLauncher";
 		public static string IP = "127.0.0.1";
 		public static ushort Port = 8484;
-		public static ushort ServerIP = 0x000B
+		public static ushort ServerIP = 0x000B;
 
 		public const bool MaskIP = true;
 		public const string MaskedIP = "8.31.99.141";
